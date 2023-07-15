@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Include Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <style>
+        .chat-history {
+            height: 500px;  /* Adjust this height according to your needs */
+            overflow-y: auto;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .clear-history {
+            background-color: #dc3545;  /* This gives the button a red color */
+            border-color: #dc3545;  /* This gives the button border a red color */
+            color: white;  /* This makes the button text white */
+            margin-left: 10px;  /* Add some space between the two buttons */
+        }
+
+        .clear-history:hover {
+            color: white;
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Al Zebra: AI powered Maths tutor for kids</h1>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="message">Your Message:</label><br>
+                <input type="text" class="form-control" id="message" name="message">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-danger clear-history" name="clear" value="true" title="Clear History">
+                <i class="fas fa-sync-alt"></i> Clear History
+            </button>
+        </form>
+
+        <div class="chat-history" id="chatBox">
+            {% for exchange in chat_history|reverse %}
+                <div class="chat-message">
+                    <p><b>You:</b> {{ exchange.user }}</p>
+                    <p><b>Bot:</b> {{ exchange.bot }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
